@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             PromoterSeeder::class,
             VenueSeeder::class,
             ArtistSeeder::class,
+            EventSeeder::class,
         ]);
     }
 }

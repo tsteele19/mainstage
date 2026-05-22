@@ -40,4 +40,13 @@ class Venue extends Model
         'noise_restriction' => 'boolean',
         'is_active' => 'boolean',
     ];
+
+    /**
+     * Relationships
+     */
+    // Events
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
 }
