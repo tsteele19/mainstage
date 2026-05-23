@@ -66,4 +66,16 @@ class Event extends Model
     {
         return $this->belongsTo(Venue::class);
     }
+
+    // Bookings
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    // Financial Records
+    public function financialRecords()
+    {
+        return $this->hasMany(FinancialRecord::class);
+    }
 }
