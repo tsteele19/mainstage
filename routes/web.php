@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\PromoterController;
 use Illuminate\Support\Facades\Route;
-
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
 
 // Dashboard
 Route::view('/', 'dashboard')->name('dashboard');
+
+// Promoter
+Route::controller(PromoterController::class)->group(function () {
+    Route::get('/promoters/create', 'create')->name('promoters.create');
+    Route::post('/promoters', 'store')->name('promoters.store');
+});
