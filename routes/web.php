@@ -10,4 +10,5 @@ Route::view('/', 'dashboard')->name('dashboard');
 Route::controller(PromoterController::class)->group(function () {
     Route::get('/promoters/create', 'create')->name('promoters.create');
     Route::post('/promoters', 'store')->name('promoters.store');
+    Route::post('/promoters/select', [PromoterController::class, 'select'])->name('promoters.select');
 });

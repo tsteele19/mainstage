@@ -20,8 +20,11 @@ class PromoterController extends Controller
      */
     public function create()
     {
-        // Returrn
-        return view('promoters.create');
+        // Get existing promoters
+        $promoters = Promoter::where('is_player_controlled', false)->get();
+
+        // Return
+        return view('promoters.create', compact('promoters'));
     }
 
     /**
@@ -78,6 +81,11 @@ class PromoterController extends Controller
             ],
         };
 
+        // Clear any user controlled promoters
+        Promoter::where('is_player_controlled', true)->update([
+            'is_player_controlled' => false,
+        ]);
+
         // Create entry in promoters table
         Promoter::create([
             'name' => $validated['name'],
@@ -126,5 +134,34 @@ class PromoterController extends Controller
     public function destroy(Promoter $promoter)
     {
         //
+    }
+
+    /**
+     * Select existing promoter
+     */
+    public function select(Request $request)
+    {
+        // Validate data
+        $validated = $request->validate([
+            'promoter_id' => [
+                'required',
+                'exists:promoters,id',
+            ],
+        ]);
+
+        // Clear current active promoter
+        Promoter::where('is_player_controlled', true)->update([
+            'is_player_controlled' => false,
+        ]);
+
+        // Set selected promoter as active
+        Promoter::where('id', $validated['promoter_id'])->update([
+            'is_player_controlled' => true,
+        ]);
+
+        // Return
+        return redirect()
+            ->route('dashboard')
+            ->with('success', 'Promoter selected successfully.');
     }
 }
