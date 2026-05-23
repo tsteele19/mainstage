@@ -41,4 +41,13 @@ class Artist extends Model
         'career_start_at' => 'date',
         'retired_at' => 'date',
     ];
+
+    /**
+     * Relationships
+     */
+    // Bookings
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }
