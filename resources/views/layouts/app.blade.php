@@ -19,6 +19,13 @@
 
             {{-- Page Content --}}
             <main class="flex-1 p-8 bg-slate-900 overflow-y-auto">
+                {{-- Flash Success Message --}}
+                @if (session('success'))
+                    <div class="mb-6 rounded-md bg-green-600 px-4 py-3 text-white">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
                 @yield('content')
             </main>
         </div>
