@@ -38,4 +38,10 @@ class Promoter extends Model
     {
         return $this->hasMany(Event::class);
     }
+
+    // Financial Records
+    public function financialRecords()
+    {
+        return $this->hasMany(FinancialRecord::class);
+    }
 }
