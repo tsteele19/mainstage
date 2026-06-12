@@ -109,7 +109,8 @@ class PromoterController extends Controller
      */
     public function show(Promoter $promoter)
     {
-        //
+        // Return
+        return view('promoters.show', compact('promoter'));
     }
 
     /**
