@@ -11,46 +11,62 @@
         <p class="px-4 mb-2 text-xs uppercase tracking-wider text-slate-500">
             Festival Ops
         </p>
-        <a href="#"
-           class="flex items-center px-4 py-3 rounded-xl bg-slate-800 text-cyan-400 font-medium border-l-4 border-cyan-400">
-            Dashboard
+
+        {{-- Dashboard --}}
+        <a href="{{ route('dashboard') }}"
+            class="flex items-center px-4 py-3 rounded-xl transition
+            {{ request()->routeIs('dashboard')
+                    ? 'bg-slate-800 text-cyan-400 font-medium border-l-4 border-cyan-400'
+                    : 'text-slate-200 hover:bg-slate-800' }}">
+                Dashboard
         </a>
 
+        {{-- Festivals --}}
         <a href="#"
            class="flex items-center px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800 transition">
             Festivals
         </a>
 
-        <a href="#"
-           class="flex items-center px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800 transition">
+        {{-- Venues --}}
+        <a href="{{ route('venues.index') }}"
+        class="flex items-center px-4 py-3 rounded-xl transition
+        {{ request()->routeIs('venues.*')
+                ? 'bg-slate-800 text-cyan-400 font-medium border-l-4 border-cyan-400'
+                : 'text-slate-200 hover:bg-slate-800' }}">
             Venues
         </a>
 
+        {{-- Talent --}}
         <a href="#"
            class="flex items-center px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800 transition">
             Talent
         </a>
 
+        {{-- Staff --}}
         <a href="#"
            class="flex items-center px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800 transition">
             Staff
         </a>
 
+        {{-- Finance --}}
         <a href="#"
            class="flex items-center px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800 transition">
             Finance
         </a>
 
+        {{-- System --}}
         <div class="pt-6">
             <p class="px-4 mb-2 text-xs uppercase tracking-wider text-slate-500">
                 System
             </p>
 
+            {{-- Reports --}}
             <a href="#"
                class="flex items-center px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800 transition">
                 Reports
             </a>
 
+            {{-- Settings --}}
             <a href="#"
                class="flex items-center px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800 transition">
                 Settings
