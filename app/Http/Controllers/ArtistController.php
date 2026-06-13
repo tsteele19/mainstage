@@ -10,9 +10,23 @@ class ArtistController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // Retrieve Artists
+        $artists = Artist::query()
+            ->when($request->filled('search'), function ($query) use ($request) {
+                $search = $request->search;
+
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                        ->orWhere('genre', 'like', "%{$search}%");
+                });
+            })
+            ->orderBy('name')
+            ->get();
+
+        // Return
+        return view('artists.index', compact('artists'));
     }
 
     /**
@@ -36,7 +50,11 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
-        //
+        // Calculate total booking cost
+        $total_cost = $artist->booking_cost + $artist->guarantee_fee;
+
+        // Return
+        return view('artists.show', compact('artist', 'total_cost'));
     }
 
     /**
