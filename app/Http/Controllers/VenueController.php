@@ -10,9 +10,27 @@ class VenueController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // Retrieve venues
+        $venues = Venue::query()
+            ->when($request->filled('search'), function ($query) use ($request) {
+                $search = $request->search;
+
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                        ->orWhere('city', 'like', "%{$search}%")
+                        ->orWhere('state', 'like', "%{$search}%")
+                        ->orWhere('country', 'like', "%{$search}%")
+                        ->orWhere('type', 'like', "%{$search}%")
+                        ->orWhere('tier', 'like', "%{$search}%");
+                });
+            })
+            ->orderBy('name')
+            ->get();
+
+        // Return
+        return view('venues.index', compact('venues'));
     }
 
     /**
@@ -36,7 +54,8 @@ class VenueController extends Controller
      */
     public function show(Venue $venue)
     {
-        //
+        // Return
+        return view('venues.show', compact('venue'));
     }
 
     /**
