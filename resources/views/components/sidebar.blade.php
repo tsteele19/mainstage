@@ -29,17 +29,20 @@
 
         {{-- Venues --}}
         <a href="{{ route('venues.index') }}"
-        class="flex items-center px-4 py-3 rounded-xl transition
-        {{ request()->routeIs('venues.*')
-                ? 'bg-slate-800 text-cyan-400 font-medium border-l-4 border-cyan-400'
-                : 'text-slate-200 hover:bg-slate-800' }}">
-            Venues
+            class="flex items-center px-4 py-3 rounded-xl transition
+            {{ request()->routeIs('venues.*')
+                    ? 'bg-slate-800 text-cyan-400 font-medium border-l-4 border-cyan-400'
+                    : 'text-slate-200 hover:bg-slate-800' }}">
+                Venues
         </a>
 
-        {{-- Talent --}}
-        <a href="#"
-           class="flex items-center px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800 transition">
-            Talent
+        {{-- Artists --}}
+        <a href="{{ route('artists.index') }}"
+            class="flex items-center px-4 py-3 rounded-xl transition
+            {{ request()->routeIs('artists.*')
+                    ? 'bg-slate-800 text-cyan-400 font-medium border-l-4 border-cyan-400'
+                    : 'text-slate-200 hover:bg-slate-800' }}">
+                Artists
         </a>
 
         {{-- Staff --}}
