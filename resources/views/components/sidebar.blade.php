@@ -22,8 +22,11 @@
         </a>
 
         {{-- Festivals --}}
-        <a href="#"
-           class="flex items-center px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800 transition">
+        <a href="{{ route('events.index') }}"
+           class="flex items-center px-4 py-3 rounded-xl transition
+            {{ request()->routeIs('events.*')
+                    ? 'bg-slate-800 text-cyan-400 font-medium border-l-4 border-cyan-400'
+                    : 'text-slate-200 hover:bg-slate-800' }}">
             Festivals
         </a>
 

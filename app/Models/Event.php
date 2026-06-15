@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
 {
+    // Enable soft deletes
+    use SoftDeletes;
+
     // Fillables
     protected $fillable = [
         'name',
