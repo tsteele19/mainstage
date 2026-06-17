@@ -74,18 +74,36 @@
         <div class="flex items-center justify-between border-b border-slate-700 px-6 py-4">
             <h2 class="font-semibold text-white">Venue</h2>
 
-            <span class="text-sm text-slate-400">
-                Coming in #8
-            </span>
+            <a href="{{ route('events.venues.index', $event) }}"
+            class="rounded-lg bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-500">
+                {{ $event->venue ? 'Change Venue' : 'Select Venue' }}
+            </a>
         </div>
 
         <div class="p-6">
             @if($event->venue)
-                <p class="text-white">{{ $event->venue->name }}</p>
+
+                <div class="space-y-2">
+                    <p class="text-lg font-medium text-white">
+                        {{ $event->venue->name }}
+                    </p>
+
+                    <p class="text-slate-400">
+                        {{ $event->venue->city }},
+                        {{ $event->venue->state }}
+                    </p>
+
+                    <p class="text-slate-400">
+                        Capacity: {{ number_format($event->venue->capacity) }}
+                    </p>
+                </div>
+
             @else
+
                 <p class="text-slate-400">
                     No venue selected yet.
                 </p>
+
             @endif
         </div>
     </div>

@@ -23,3 +23,10 @@ Route::resource('artists', ArtistController::class)->only(['index', 'create', 's
 
 // Events
 Route::resource('events', EventController::class);
+
+// Event Venue Selection
+Route::get('/events/{event}/venues', [EventController::class, 'selectVenue'])
+    ->name('events.venues.index');
+
+Route::put('/events/{event}/venues/{venue}', [EventController::class, 'assignVenue'])
+    ->name('events.venues.assign');
