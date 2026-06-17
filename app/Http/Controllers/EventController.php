@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Promoter;
+use App\Models\Venue;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -167,5 +168,33 @@ class EventController extends Controller
         return redirect()
             ->route('events.index')
             ->with('success', 'Festival deleted successfully.');
+    }
+
+    /**
+     * Select venue for the event
+     */
+    public function selectVenue(Event $event)
+    {
+        // Get venues
+        $venues = Venue::orderBy('name')->get();
+
+        // Return view
+        return view('events.venues.index', compact('event', 'venues'));
+    }
+
+    /**
+     * Assign venue for the event
+     */
+    public function assignVenue(Event $event, Venue $venue)
+    {
+        // Update event entry
+        $event->update([
+            'venue_id' => $venue->id,
+        ]);
+
+        // Return and redirect to festival page
+        return redirect()
+            ->route('events.show', $event)
+            ->with('success', 'Venue selecteed successfully!');
     }
 }
